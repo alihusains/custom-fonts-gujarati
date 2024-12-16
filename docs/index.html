@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML Preview</title>
+  <style>
+    @font-face {
+      font-family: myFirstFont;
+      src: url(https://cdn.jsdelivr.net/gh/alihusains/custom-fonts-gujarati@main/guj_dua.ttf);
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    textarea {
+      width: 100%;
+      font-size: 16px;
+      padding: 10px;
+      margin: 10px 0;
+      resize: none;
+    }
+
+    .flex-container {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .div-box {
+      border: 1px solid black;
+      padding: 10px;
+      width: 45%;
+      height: 150px;
+      overflow-y: auto;
+    }
+
+    .gujarati {
+      font-family: myFirstFont;
+      font-size: 1.8em;
+    }
+
+    button {
+      font-size: 16px;
+      padding: 10px;
+      cursor: pointer;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      display: block;
+      margin: 20px auto;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+  </style>
+</head>
+<body>
+
+  <h1>HTML Preview</h1>
+
+  <textarea id="inputText" placeholder="Enter your text here..." rows="4" cols="50" oninput="writeToDivs()"></textarea>
+
+  <div class="flex-container">
+    <div class="english div-box"></div>
+    <div class="gujarati div-box"></div>
+  </div>
+
+  <button onclick="copyDivContents()">Copy Contents</button>
+
+  <script>
+    function copyDivContents() {
+      const divContents = document.querySelector(".english").innerText; // You can modify this to copy Gujarati content if needed
+      navigator.clipboard.writeText(divContents)
+        .then(() => {
+          alert("Text copied to clipboard: " + divContents);
+        })
+        .catch((err) => {
+          console.error("Failed to copy: ", err);
+        });
+    }
+
+    function writeToDivs() {
+      const inputText = document.getElementById("inputText").value;
+      document.querySelector(".english").innerText = inputText;
+      document.querySelector(".gujarati").innerText = inputText; // Modify as per the Gujarati text format
+    }
+  </script>
+
+</body>
+</html>
